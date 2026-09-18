@@ -24,3 +24,9 @@ pesquisar no gitignore.io "Django" para ter os arquivos
 enviar para o github
 git init
 git remote add origin https://github.com/L4rt/Projeto_PLANIF.git
+git commit -m "Projeto Planif - inicio"                 
+git branch -M main
+git push -u origin main
+
+Criar um/os apps na raiz (python manage.py startapp tarefas)
+registrar os apps - colocar o noma dado a eles no installed apps no settings.py do setup
