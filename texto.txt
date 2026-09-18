@@ -1,0 +1,26 @@
+Criar pasta do projeto
+Abrir no vs code juntamente com o terminal
+Criar o ambiente virtual - VENV - (python -m venv ./venv)
+Ativar o ambiente virtual (venv\Scripts\activate)
+Selecionar o interpretador (venv)
+Instalar o django (pip install django) --- atualiza-lo (python.exe -m pip install --upgrade pip)
+Ver as dependencias do projeto ()
+Criar arquivo (requirements.txt) na raiz
+Salvar as dependencias (pip freeze > requirements.txt)
+!X! ver comandos jango (django-admin help)
+
+Criar o projeto django (django-admin startproject setup .)
+Mudar configurações no setins de SETUP (linguagem(pt-br) e local(America/Sao_Paulo))
+Subir no servido/Testas no navegadr(python manage.py runserver) -- Derrubar o servidor
+
+instalar o dotenv(pip install python-dotenv) e atualizar o requirements(pip freeze > requirements.txt).
+Criar o arquivo .env na raiz e colocar a secret key sem as aspas lá
+importar o OS e o dotenv no settings.py(import os; from dotenv import load_dotenv)
+Chamar a função load_dotenv()
+Colocar a "nova" chave no seetings.py  (SECRET_KEY = str(os.getenv('SECRET_KEY')))
+
+Criar um arquivo .gitignore para colocar os arquivos que não irão ao github
+pesquisar no gitignore.io "Django" para ter os arquivos
+enviar para o github
+git init
+git remote add origin https://github.com/L4rt/Projeto_PLANIF.git
