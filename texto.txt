@@ -30,3 +30,10 @@ git push -u origin main
 
 Criar um/os apps na raiz (python manage.py startapp tarefas)
 registrar os apps - colocar o noma dado a eles no installed apps no settings.py do setup
+criar uma função no view do app para exibir informações na tela.
+Criar um arqivo urls.py em cada app e Definir a rota no urls.py do apps
+Ligar ao urls.py de cada app no setup
+
+Criar arquivo templates - criar pastas para os apps - criar os htmls
+importar o path include no urls.py do setup
+adicionar 'DIRS': [BASE_DIR / 'templates'] no setings.py do setup, na parte do templates
