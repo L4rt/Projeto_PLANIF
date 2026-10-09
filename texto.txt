@@ -34,6 +34,10 @@ criar uma função no view do app para exibir informações na tela.
 Criar um arqivo urls.py em cada app e Definir a rota no urls.py do apps
 Ligar ao urls.py de cada app no setup
 
-Criar arquivo templates - criar pastas para os apps - criar os htmls
+Criar arquivo templates - criar o base.html - criar pastas para cada app - criar os htmls
 importar o path include no urls.py do setup
 adicionar 'DIRS': [BASE_DIR / 'templates'] no setings.py do setup, na parte do templates
+colocar no 'app_dir' do settings.py do setup = True
+Renderizar o html através da view do app
+criar a pasta static e nela pasta css, js e img.
+
