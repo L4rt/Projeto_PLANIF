@@ -1,0 +1,239 @@
+:root {
+    --verde: #43a047;
+    --verde-escuro: #2e7d32;
+    --verde-link: #2e8b34;
+    --texto: #2a3342;
+    --texto-suave: #5f6b7d;
+    --placeholder: #8a93a3;
+    --borda: #dfe3ea;
+    --erro: #c62828;
+    --fundo: #f3faf3;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+    margin: 0;
+    font-family: "Roboto", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    color: var(--texto);
+    background: linear-gradient(180deg, #f1faf1 0%, #f7fbf7 100%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Formas decorativas do fundo */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    background: #dff0dc;
+    border-radius: 48px;
+    z-index: 0;
+    pointer-events: none;
+}
+body::before {
+    width: 340px; height: 340px;
+    top: -180px; left: -140px;
+    transform: rotate(45deg);
+}
+body::after {
+    width: 340px; height: 340px;
+    bottom: -190px; right: -140px;
+    transform: rotate(45deg);
+}
+
+.login-page {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 632px;
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    padding: 56px 56px 64px;
+}
+
+/* Marca */
+.brand { text-align: center; margin-bottom: 40px; }
+
+.brand__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.brand__icon { height: 70px; width: auto; display: block; }
+
+.brand__name {
+    margin: 0;
+    font-size: 3.4rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1;
+    color: var(--texto);
+}
+
+.brand__tagline {
+    margin: 14px 0 0;
+    font-size: 1.1rem;
+    color: var(--texto-suave);
+}
+
+/* Formulário */
+.field { margin-bottom: 24px; }
+
+.field__label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.field__control {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.field__icon {
+    position: absolute;
+    left: 16px;
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--texto-suave);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+.field__icon .dot { fill: var(--texto-suave); stroke: none; }
+
+.field__input {
+    width: 100%;
+    height: 56px;
+    padding: 0 52px 0 56px;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--texto);
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.field__input::placeholder { color: var(--placeholder); }
+
+.field__input:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(67, 160, 71, .2);
+}
+
+.field--invalid .field__input { border-color: var(--erro); }
+
+.field__error {
+    display: block;
+    min-height: 0;
+    margin-top: 6px;
+    font-size: .875rem;
+    color: var(--erro);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.toggle-password:focus-visible { outline: 2px solid var(--verde); }
+
+.toggle-password svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--texto);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.toggle-password .slash { display: none; }
+.toggle-password.is-visible .slash { display: block; }
+
+/* Links */
+.link {
+    color: var(--verde-link);
+    font-weight: 500;
+    text-decoration: underline;
+}
+.link:hover { color: var(--verde-escuro); }
+.link:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; border-radius: 2px; }
+
+.link--small {
+    display: block;
+    width: fit-content;
+    margin: -8px 0 28px auto;
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+/* Botão */
+.btn-primary {
+    width: 100%;
+    height: 56px;
+    font: inherit;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--verde);
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+}
+.btn-primary:hover { background: var(--verde-escuro); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-primary:focus-visible { outline: 3px solid rgba(67, 160, 71, .4); outline-offset: 2px; }
+
+.signup {
+    margin: 32px 0 0;
+    text-align: center;
+    font-size: .95rem;
+    color: var(--texto-suave);
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+    .login-card { padding: 36px 24px 44px; }
+    .brand { margin-bottom: 32px; }
+    .brand__icon { height: 52px; }
+    .brand__name { font-size: 2.6rem; }
+    .brand__tagline { font-size: 1rem; }
+}
+
+@media (max-width: 380px) {
+    .login-card { padding: 28px 18px 36px; }
+    .brand__icon { height: 42px; }
+    .brand__name { font-size: 2.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+}

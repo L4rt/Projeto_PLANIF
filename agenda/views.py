@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 # Create your views here.
-def agenda(request):
-    return render (request, 'agenda/agenda.html')
+def inicio(request):
+    return render (request, 'agenda/inicio.html')

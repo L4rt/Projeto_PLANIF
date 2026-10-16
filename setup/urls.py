@@ -25,4 +25,6 @@ urlpatterns = [
     path('', include('agenda.urls')),
     path('', include('notificacoes.urls')),
     path('', include('usuarios.urls')),
+    
+    path('usuarios/', include('usuarios.urls')),
 ]
