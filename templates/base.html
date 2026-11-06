@@ -1,24 +1,134 @@
- {% load static %}  {% comment %} Adicionado {% endcomment %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}PLANIF{% endblock %}</title>
 
-    <title>{% block title %}PLANIF{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"> {% comment %} Ligar com css {% endcomment %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% block extra_css %}{% endblock %}
 </head>
 <body>
 
-    <header>
-        <h1>PLANIF</h1>
-    </header>
+  <!-- ===== CABEÇALHO ===== -->
+  <header class="topbar">
+    <div class="topbar__left">
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-label="Abrir menu lateral" aria-controls="sidebar" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      </button>
 
-    <main>
-        {% block content %}
-        {% endblock %}
+      <a class="brand" href="/" aria-label="PLANIF - página inicial">
+        <svg class="brand__icon" viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="9" y="1" width="5" height="9" rx="1.5" fill="#3cb53a"/>
+          <rect x="34" y="1" width="5" height="9" rx="1.5" fill="#3cb53a"/>
+          <rect x="1" y="5" width="46" height="42" rx="3" fill="#3cb53a"/>
+          <rect x="1" y="14" width="46" height="3" fill="#ffffff"/>
+          <rect x="6" y="21" width="36" height="20" rx="1.5" fill="none"/>
+        </svg>
+        <span class="brand__name">PLANIF</span>
+      </a>
+    </div>
+
+    <div class="topbar__right">
+      <a class="notifications" href="#" aria-label="Notificações">
+        <span class="notifications__label">Notificações</span>
+        <svg class="icon" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+          <path fill="currentColor" d="M12 2a1.2 1.2 0 0 1 1.2 1.2v.7A7 7 0 0 1 19 10.8V15l2 2.6c.5.7 0 1.4-.8 1.4H3.8c-.8 0-1.3-.7-.8-1.4L5 15v-4.2a7 7 0 0 1 5.8-6.9v-.7A1.2 1.2 0 0 1 12 2Zm0 20a2.6 2.6 0 0 1-2.5-1.9h5A2.6 2.6 0 0 1 12 22Z"/>
+        </svg>
+        <span class="notifications__badge" id="notificationsBadge" hidden>0</span>
+      </a>
+
+      <a class="profile" href="#" aria-label="Perfil do usuário">
+        <svg class="icon" viewBox="0 0 24 24" width="42" height="42" aria-hidden="true">
+          <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 4.2a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 0 1 0-6.8Zm0 13.2a8 8 0 0 1-6.1-2.9c.1-2 4.1-3.1 6.1-3.1s6 1.1 6.1 3.1a8 8 0 0 1-6.1 2.9Z"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ===== MENU LATERAL ===== -->
+    <aside class="sidebar" id="sidebar" aria-label="Menu lateral">
+
+      <section class="sidebar__section" aria-labelledby="titulo-academico">
+        <h2 class="sidebar__title" id="titulo-academico">Acadêmico</h2>
+        <ul class="sidebar__list">
+          <li>
+            <label class="check check--calendar">
+              <input type="checkbox" checked>
+              <span class="check__box" aria-hidden="true"></span>
+              <span class="check__text">Turma INFO 3M</span>
+            </label>
+          </li>
+          <li>
+            <label class="check check--calendar">
+              <input type="checkbox" checked>
+              <span class="check__box" aria-hidden="true"></span>
+              <span class="check__text">Turma prof. Arthur</span>
+            </label>
+          </li>
+          <li>
+            <label class="check check--calendar">
+              <input type="checkbox">
+              <span class="check__box" aria-hidden="true"></span>
+              <span class="check__text">Estudos</span>
+            </label>
+          </li>
+          <li>
+            <a class="sidebar__add" href="#" id="novoCalendario">+ Novo calendário</a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="sidebar__section" aria-labelledby="titulo-tarefas">
+        <h2 class="sidebar__title" id="titulo-tarefas">Tarefas pendentes</h2>
+        <ul class="sidebar__list">
+          <li>
+            <label class="check check--task">
+              <input type="checkbox">
+              <span class="check__box" aria-hidden="true"></span>
+              <span class="check__text">Relatório de Física</span>
+            </label>
+          </li>
+          <li>
+            <label class="check check--task">
+              <input type="checkbox" checked>
+              <span class="check__box" aria-hidden="true"></span>
+              <span class="check__text">Lista de Exercícios: Banco de Dados</span>
+            </label>
+          </li>
+          <li>
+            <label class="check check--task">
+              <input type="checkbox">
+              <span class="check__box" aria-hidden="true"></span>
+              <span class="check__text">Lista: Programação para Internet</span>
+            </label>
+          </li>
+        </ul>
+      </section>
+
+    </aside>
+
+    <!-- Fundo escuro que aparece atrás do menu no mobile -->
+    <div class="overlay" id="overlay" hidden></div>
+
+    <!-- ===== CONTEÚDO PRINCIPAL (vazio: será preenchido pelos templates filhos) ===== -->
+    <main class="main" id="conteudo">
+      {% block content %}{% endblock %}
     </main>
 
+  </div>
+
+  <script src="{% static 'js/base.js' %}"></script>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

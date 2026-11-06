@@ -1,16 +1,406 @@
+/* =========================================================
+   PLANIF - base.css
+   Local sugerido no Django: static/css/base.css
+   ========================================================= */
+
+:root {
+  --verde-marca: #3cb53a;
+  --verde-check: #2fa52d;
+  --verde-sidebar-topo: #d9f8d5;
+  --verde-sidebar-base: #cdf6c8;
+  --vermelho: #e00000;
+  --texto: #222222;
+  --fundo: #ffffff;
+  --borda: #e4e4e4;
+
+  --altura-topbar: 76px;
+  --largura-sidebar: 300px;
+
+  --fonte: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--fonte);
+  font-size: 1rem;
+  color: var(--texto);
+  background: var(--fundo);
+  line-height: 1.4;
 }
 
-header {
-    background-color: #243b55;
-    color: white;
-    padding: 20px;
+body.menu-aberto {
+  overflow: hidden;
 }
 
-main {
-    padding: 20px;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 3px solid #1f7a1d;
+  outline-offset: 2px;
+}
+
+/* ---------- Cabeçalho ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--altura-topbar);
+  padding: 0 clamp(14px, 2vw, 32px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--fundo);
+  border-bottom: 1px solid var(--borda);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.topbar__left,
+.topbar__right {
+  display: flex;
+  align-items: center;
+}
+
+.topbar__left {
+  gap: 12px;
+}
+
+.topbar__right {
+  gap: clamp(14px, 2vw, 28px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand__icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.brand__name {
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.notifications {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.35rem;
+  color: var(--texto);
+}
+
+.notifications__label {
+  white-space: nowrap;
+}
+
+.notifications__badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--vermelho);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+}
+
+.notifications__badge[hidden] {
+  display: none;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  display: block;
+  color: #111;
+}
+
+/* Botão hambúrguer (só aparece no mobile) */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  background: var(--verde-sidebar-topo);
+}
+
+/* ---------- Layout ---------- */
+.layout {
+  display: flex;
+  min-height: calc(100vh - var(--altura-topbar));
+}
+
+/* ---------- Menu lateral ---------- */
+.sidebar {
+  position: sticky;
+  top: var(--altura-topbar);
+  align-self: flex-start;
+  flex: 0 0 var(--largura-sidebar);
+  width: var(--largura-sidebar);
+  height: calc(100vh - var(--altura-topbar));
+  overflow-y: auto;
+  padding: 44px 22px 32px;
+  background: linear-gradient(180deg, var(--verde-sidebar-topo), var(--verde-sidebar-base));
+}
+
+.sidebar__section + .sidebar__section {
+  margin-top: 34px;
+}
+
+.sidebar__title {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar__add {
+  display: inline-block;
+  padding: 2px 0;
+  font-size: 1.1rem;
+}
+
+.sidebar__add:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Checkbox personalizado ---------- */
+.check {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 1.1rem;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.check input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.check__box {
+  position: relative;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+  border-radius: 3px;
+  background: #fff;
+  border: 1px solid transparent;
+}
+
+/* marcado = verde com "check" branco */
+.check input:checked + .check__box {
+  background: var(--verde-check);
+}
+
+.check input:checked + .check__box::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2.4px 2.4px 0;
+  transform: rotate(45deg);
+}
+
+/* calendário desmarcado = vermelho com "X" branco */
+.check--calendar input:not(:checked) + .check__box {
+  background: var(--vermelho);
+}
+
+.check--calendar input:not(:checked) + .check__box::before,
+.check--calendar input:not(:checked) + .check__box::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 2.4px;
+  background: #fff;
+  border: 0;
+}
+
+.check--calendar input:not(:checked) + .check__box::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.check--calendar input:not(:checked) + .check__box::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.check--calendar input:not(:checked) ~ .check__text {
+  color: var(--vermelho);
+}
+
+/* tarefa desmarcada = caixa branca vazia */
+.check--task input:not(:checked) + .check__box {
+  background: #fff;
+}
+
+.check input:focus-visible + .check__box {
+  outline: 3px solid #1f7a1d;
+  outline-offset: 2px;
+}
+
+/* ---------- Conteúdo principal ---------- */
+.main {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: clamp(16px, 2.5vw, 32px);
+  background: var(--fundo);
+}
+
+/* ---------- Fundo escuro do menu mobile ---------- */
+.overlay {
+  position: fixed;
+  inset: var(--altura-topbar) 0 0 0;
+  z-index: 19;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1024px) {
+  :root {
+    --largura-sidebar: 260px;
+  }
+
+  .notifications {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+    --altura-topbar: 64px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .brand__icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* o texto "Notificações" some e fica só o sino */
+  .notifications__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .profile .icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* menu lateral vira gaveta */
+  .sidebar {
+    position: fixed;
+    top: var(--altura-topbar);
+    left: 0;
+    z-index: 20;
+    width: min(85vw, 320px);
+    height: calc(100dvh - var(--altura-topbar));
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: none;
+  }
+
+  .sidebar.is-open {
+    transform: translateX(0);
+    box-shadow: 4px 0 18px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (max-width: 400px) {
+  .topbar {
+    padding: 0 10px;
+  }
+
+  .brand__name {
+    font-size: 1.5rem;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transition: none;
+  }
 }

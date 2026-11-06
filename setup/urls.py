@@ -25,6 +25,9 @@ urlpatterns = [
     path('', include('agenda.urls')),
     path('', include('notificacoes.urls')),
     path('', include('usuarios.urls')),
-    
-    path('usuarios/', include('usuarios.urls')),
 ]
+
+# path('admin/', admin.site.urls),
+#     path('agenda/', include('agenda.urls')),
+#     path('notificacoes/', include('notificacoes.urls')),
+#     path('usuarios/', include('usuarios.urls')),

@@ -1,0 +1,563 @@
+/* =========================================================
+   PLANIF - main.css (calendário)
+   Local sugerido no Django: static/css/main.css
+   Depende das variáveis e da fonte definidas no base.css
+   ========================================================= */
+
+:root {
+  --cal-fundo: #f4fcf3;
+  --cal-linha: #111111;
+  --cal-verde: #4b8a35;
+  --cal-verde-escuro: #3b7229;
+  --cal-botao: #3f8a2f;
+  --cal-pilula-clara: #d9f7d2;
+  --cal-pilula-media: #a9e3a9;
+  --cal-hover: #e6f7e2;
+  --cal-tarefa: #f0b83a;
+  --cal-tarefa-texto: #3a2800;
+}
+
+/* A <main> do base.html passa a preencher toda a área restante */
+.main:has(> .cal) {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: var(--cal-fundo);
+}
+
+.cal {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.5vw, 32px);
+  width: 100%;
+  min-width: 0;
+  padding: clamp(14px, 3vw, 44px);
+  background: var(--cal-fundo);
+}
+
+/* ---------- Topo ---------- */
+.cal__topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 28px;
+}
+
+.cal__esquerda {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cal__titulo {
+  margin: 0;
+  font-size: clamp(2rem, 5.2vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: #3b3b3b;
+  overflow-wrap: anywhere;
+}
+
+.cal__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--cal-pilula-clara);
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.nav-btn:hover,
+.hoje-btn:hover {
+  background: var(--cal-pilula-media);
+}
+
+.hoje-btn {
+  height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--cal-pilula-clara);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cal__subtitulo {
+  margin: 0 0 0 8px;
+  font-size: 1.05rem;
+  color: #4a4a4a;
+}
+
+.cal__controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+}
+
+.cal__navegar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cal__navegar-rotulo {
+  font-size: clamp(1.1rem, 2vw, 1.9rem);
+  font-weight: 800;
+}
+
+.seg {
+  display: inline-flex;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--cal-pilula-clara);
+}
+
+.seg__btn {
+  padding: 0.5rem clamp(12px, 1.6vw, 22px);
+  border: 0;
+  background: var(--cal-pilula-clara);
+  color: var(--texto);
+  font: inherit;
+  font-size: clamp(1rem, 1.7vw, 1.6rem);
+  cursor: pointer;
+}
+
+.seg__btn:hover {
+  background: #c6f0c1;
+}
+
+.seg__btn.is-ativo {
+  background: var(--cal-pilula-media);
+  font-weight: 800;
+}
+
+.btn-novo {
+  padding: 0.8rem clamp(16px, 1.8vw, 26px);
+  border: 0;
+  border-radius: 999px;
+  background: var(--cal-botao);
+  color: #fff;
+  font: inherit;
+  font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn-novo:hover {
+  background: var(--cal-verde-escuro);
+}
+
+/* ---------- Área da grade (preenche o resto da tela) ---------- */
+.cal__area {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  overflow: auto;
+}
+
+.grade {
+  --colunas: 5;
+  --linhas: 7;
+  display: grid;
+  gap: 2px;
+  min-height: 520px;
+  border: 2px solid var(--cal-linha);
+  background: var(--cal-linha);
+}
+
+.grade--semana,
+.grade--dia {
+  min-width: calc(92px + var(--colunas) * 112px);
+  grid-template-columns: minmax(84px, 130px) repeat(var(--colunas), minmax(0, 1fr));
+  grid-template-rows: auto repeat(7, minmax(64px, 1fr));
+}
+
+.grade--mes {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-rows: auto repeat(var(--linhas), minmax(92px, 1fr));
+}
+
+.cel {
+  background: var(--cal-fundo);
+  min-width: 0;
+}
+
+.cel--cab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  font-size: clamp(0.95rem, 1.5vw, 1.4rem);
+  font-weight: 800;
+  text-align: center;
+}
+
+.cel--cab small {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #4a4a4a;
+}
+
+.cel--hoje {
+  background: var(--cal-pilula-clara);
+}
+
+.cel--hora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  font-size: clamp(0.8rem, 1.3vw, 1.15rem);
+  font-weight: 800;
+  text-align: center;
+}
+
+.cel--slot {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.cel--slot:hover {
+  background: var(--cal-hover);
+}
+
+/* ---------- Eventos e tarefas ---------- */
+.evento {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--cal-verde);
+  color: #fff;
+  font: inherit;
+  font-size: clamp(0.8rem, 1.3vw, 1.15rem);
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.evento:hover {
+  background: var(--cal-verde-escuro);
+}
+
+.evento--tarefa {
+  background: var(--cal-tarefa);
+  color: var(--cal-tarefa-texto);
+}
+
+.evento--tarefa:hover {
+  background: #deaa2c;
+}
+
+/* ---------- Visão mensal ---------- */
+.cel--mes {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.cel--mes:hover {
+  background: var(--cal-hover);
+}
+
+.cel--fora {
+  opacity: 0.5;
+}
+
+.dia-num {
+  align-self: flex-start;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--texto);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.cel--hoje-mes .dia-num {
+  background: var(--cal-verde);
+  color: #fff;
+}
+
+.grade--mes .evento {
+  flex: 0 0 auto;
+  display: block;
+  padding: 2px 6px;
+  font-size: 0.82rem;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mais {
+  align-self: flex-start;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: var(--cal-verde-escuro);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mais:hover {
+  text-decoration: underline;
+}
+
+.cel--cab .curto {
+  display: none;
+}
+
+/* ---------- Janela (modal) ---------- */
+.modal {
+  width: min(92vw, 460px);
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--texto);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.modal__titulo {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.campo label,
+.campo legend {
+  padding: 0;
+  font-weight: 600;
+}
+
+.campo input[type="text"],
+.campo input[type="date"],
+.campo select {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 2px solid #b9c9b6;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--texto);
+  font: inherit;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: var(--cal-verde);
+  outline: 2px solid var(--cal-verde);
+  outline-offset: 1px;
+}
+
+.campo--tipo {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+}
+
+.campo--tipo legend {
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.opcao {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.opcao input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--cal-verde);
+}
+
+.campo-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.modal__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn {
+  padding: 0.65rem 1.3rem;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn[hidden] {
+  display: none;
+}
+
+.btn--principal {
+  background: var(--cal-botao);
+  color: #fff;
+}
+
+.btn--principal:hover {
+  background: var(--cal-verde-escuro);
+}
+
+.btn--neutro {
+  background: var(--cal-pilula-clara);
+  color: var(--texto);
+}
+
+.btn--neutro:hover {
+  background: var(--cal-pilula-media);
+}
+
+.btn--perigo {
+  margin-right: auto;
+  background: transparent;
+  color: #b00000;
+}
+
+.btn--perigo:hover {
+  background: #fde8e8;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1024px) {
+  .cal__controles {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 700px) {
+  .cal__controles {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cal__navegar {
+    justify-content: space-between;
+  }
+
+  .seg {
+    flex: 1 1 auto;
+  }
+
+  .seg__btn {
+    flex: 1 1 0;
+  }
+
+  .btn-novo {
+    width: 100%;
+  }
+
+  .grade {
+    min-height: 460px;
+  }
+
+  /* mês: nomes curtos e eventos viram barrinhas */
+  .grade--mes .cel--cab .longo {
+    display: none;
+  }
+
+  .grade--mes .cel--cab .curto {
+    display: inline;
+  }
+
+  .cel--mes {
+    padding: 3px;
+  }
+
+  .dia-num {
+    min-width: 26px;
+    height: 26px;
+    padding: 0 4px;
+    font-size: 0.85rem;
+  }
+
+  .grade--mes .evento {
+    height: 6px;
+    min-height: 6px;
+    padding: 0;
+    border-radius: 3px;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  .mais {
+    font-size: 0.7rem;
+  }
+
+  .campo-linha {
+    grid-template-columns: 1fr;
+  }
+}
