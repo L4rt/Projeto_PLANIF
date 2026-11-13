@@ -30,33 +30,33 @@ O **PLANIF** é um sistema web de gerenciamento de agenda desenvolvido para auxi
 
 O PLANIF possui três módulos principais, organizados de acordo com os requisitos funcionais (RF) especificados.
 
-**Legenda de status:** ✅ Disponível | 🕒 Prevista (ainda não disponível)
+**Legenda de status:** Disponível | Prevista (ainda não disponível)
 
 ### 4.1 Módulo de Usuário
 
 | Código | Funcionalidade | Descrição | Status |
 |--------|----------------|-----------|--------|
-| RF01 | Cadastrar usuário | Permite o cadastro de alunos e professores por meio de informações básicas, como nome, e-mail e senha. | 🕒 Prevista |
-| RF02 | Fazer login | Permite a autenticação segura por e-mail e senha para acesso ao sistema. | 🕒 Prevista |
-| RF03 | Recuperar senha | Permite solicitar a redefinição de senha, recebendo instruções no e-mail cadastrado. | 🕒 Prevista |
+| RF01 | Cadastrar usuário | Permite o cadastro de alunos e professores por meio de informações básicas, como nome, e-mail e senha. |  Prevista |
+| RF02 | Fazer login | Permite a autenticação segura por e-mail e senha para acesso ao sistema. |  Prevista |
+| RF03 | Recuperar senha | Permite solicitar a redefinição de senha, recebendo instruções no e-mail cadastrado. |  Prevista |
 
 ### 4.2 Módulo de Eventos e Tarefas
 
 | Código | Funcionalidade | Descrição | Status |
 |--------|----------------|-----------|--------|
-| RF04 | Gerenciar eventos e tarefas | Permite criar, editar e excluir eventos e tarefas, com título, descrição, data, horário e prioridade. | 🕒 Prevista |
-| RF05 | Organizar tarefas | Permite classificar e organizar as atividades por critérios como prioridade e prazo. | 🕒 Prevista |
-| RF06 | Marcar tarefas como concluídas | Permite alterar o status da tarefa para concluída, mantendo o histórico das atividades executadas. | 🕒 Prevista |
-| RF07 | Visualizar agenda | Disponibiliza a visualização dos compromissos nos formatos diário, semanal e mensal. | 🕒 Prevista |
+| RF04 | Gerenciar eventos e tarefas | Permite criar, editar e excluir eventos e tarefas, com título, descrição, data, horário e prioridade. |  Prevista |
+| RF05 | Organizar tarefas | Permite classificar e organizar as atividades por critérios como prioridade e prazo. |  Prevista |
+| RF06 | Marcar tarefas como concluídas | Permite alterar o status da tarefa para concluída, mantendo o histórico das atividades executadas. |  Prevista |
+| RF07 | Visualizar agenda | Disponibiliza a visualização dos compromissos nos formatos diário, semanal e mensal. |  Prevista |
 
 ### 4.3 Módulo de Pesquisa e Notificação
 
 | Código | Funcionalidade | Descrição | Status |
 |--------|----------------|-----------|--------|
-| RF08 | Pesquisar eventos | Permite pesquisar e filtrar eventos e tarefas por data, prioridade, categoria ou palavras-chave no título ou descrição. | 🕒 Prevista |
-| RF09 | Exibir resumo diário de compromissos | Apresenta, após o login, os compromissos e tarefas programados para o dia atual. | 🕒 Prevista |
-| RF10 | Enviar notificação | Informa os usuários sobre compromissos e prazos próximos por meio de lembretes automáticos. | 🕒 Prevista |
-| RF11 | Personalizar notificações | Permite configurar a forma e o momento de recebimento dos lembretes, incluindo a antecedência. | 🕒 Prevista |
+| RF08 | Pesquisar eventos | Permite pesquisar e filtrar eventos e tarefas por data, prioridade, categoria ou palavras-chave no título ou descrição. |  Prevista |
+| RF09 | Exibir resumo diário de compromissos | Apresenta, após o login, os compromissos e tarefas programados para o dia atual. |  Prevista |
+| RF10 | Enviar notificação | Informa os usuários sobre compromissos e prazos próximos por meio de lembretes automáticos. |  Prevista |
+| RF11 | Personalizar notificações | Permite configurar a forma e o momento de recebimento dos lembretes, incluindo a antecedência. |  Prevista |
 
 ---
 
