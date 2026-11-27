@@ -41,3 +41,4 @@ colocar no 'app_dir' do settings.py do setup = True
 Renderizar o html através da view do app
 criar a pasta static e nela pasta css, js e img.
 
+Criar o super user para ter acesso aos models e banco de dados para ver se funciona e fazer testes
